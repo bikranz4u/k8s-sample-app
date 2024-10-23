@@ -1,0 +1,29 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: app-c
+  namespace: app-c
+  labels:
+    app: app-c
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: app-c
+  template:
+    metadata:
+      labels:
+        app: app-c
+    spec:
+      containers:
+      - name: app-c-container
+        image: localhost/app-c:latest # Image pulled from localhost
+        ports:
+        - containerPort: 5000
+        resources:
+          limits:
+            memory: "100Mi"
+            cpu: "150m"
+          requests:
+            memory: "50Mi"
+            cpu: "100m"

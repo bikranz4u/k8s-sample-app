@@ -1,0 +1,19 @@
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  name: deny-app-c-to-app-a
+  namespace: default
+spec:
+  podSelector:
+    matchLabels:
+      app: app-a
+  policyTypes:
+  - Ingress
+  ingress:
+  - from:
+    - podSelector:
+        matchLabels:
+          app: app-c
+    ports:
+    - protocol: TCP
+      port: 5000
