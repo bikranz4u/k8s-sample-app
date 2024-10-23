@@ -17,7 +17,8 @@ spec:
     spec:
       containers:
       - name: app-c-container
-        image: localhost/app-c:latest # Image pulled from localhost
+        image: app-c:latest # Image pulled from localhost
+        imagePullPolicy: Never
         ports:
         - containerPort: 5000
         resources:
