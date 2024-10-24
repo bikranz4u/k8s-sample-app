@@ -1,0 +1,11 @@
+apiVersion: security.istio.io/v1beta1
+kind: PeerAuthentication
+metadata:
+  name: app-a-to-app-b
+  namespace: app-ab
+spec:
+  selector:
+    matchLabels:
+      app: app-b
+  mtls:
+    mode: STRICT

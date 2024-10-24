@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: app-c
+  namespace: app-c
+  labels:
+    app: app-c
+spec:
+  selector:
+    app: app-c
+  ports:
+    - protocol: TCP
+      port: 5000    # Exposes the service on port 5000
+      targetPort: 5000 # Forwards traffic to container port 5000
+  type: ClusterIP    # Internal service

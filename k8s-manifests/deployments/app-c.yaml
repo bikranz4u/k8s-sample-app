@@ -17,10 +17,15 @@ spec:
     spec:
       containers:
       - name: app-c-container
-        image: app-c:latest # Image pulled from localhost
+        image: app-c:0.0.1 # Image pulled from localhost
         imagePullPolicy: Never
         ports:
         - containerPort: 5000
+        env:
+        - name: POD_IP
+          valueFrom:
+            fieldRef:
+              fieldPath: status.podIP
         resources:
           limits:
             memory: "100Mi"

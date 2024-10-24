@@ -1,19 +1,20 @@
+### This is not exclusively required as we have already deny all policy on app-ab namespace.
 apiVersion: networking.k8s.io/v1
 kind: NetworkPolicy
 metadata:
   name: deny-app-c-to-app-a
-  namespace: default
+  # namespace: app-ab
 spec:
   podSelector:
     matchLabels:
       app: app-a
-  policyTypes:
-  - Ingress
+  # policyTypes:
+  # - Ingress
   ingress:
   - from:
     - podSelector:
         matchLabels:
           app: app-c
-    ports:
-    - protocol: TCP
-      port: 5000
+
+
+

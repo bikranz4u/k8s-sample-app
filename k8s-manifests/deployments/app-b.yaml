@@ -17,10 +17,15 @@ spec:
     spec:
       containers:
       - name: app-b-container
-        image: app-b:latest # Image pulled from localhost
+        image: app-b:0.0.1 # Image pulled from localhost
         imagePullPolicy: Never
         ports:
         - containerPort: 5000
+        env:
+        - name: POD_IP
+          valueFrom:
+            fieldRef:
+              fieldPath: status.podIP
         resources:
           limits:
             memory: "100Mi"
@@ -28,11 +33,3 @@ spec:
           requests:
             memory: "50Mi"
             cpu: "100m"
-      #   volumeMounts:
-      #   - name: tls-cert
-      #     mountPath: /etc/tls
-      #     readOnly: true
-      # volumes:
-      # - name: tls-cert
-      #   secret:
-      #     secretName: app-b-tls

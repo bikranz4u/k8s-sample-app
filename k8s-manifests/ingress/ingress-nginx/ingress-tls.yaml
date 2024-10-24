@@ -1,0 +1,21 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: app-ingress
+  namespace: app-ab
+spec:
+  tls:
+    - hosts:
+        - app-b.example.com
+      secretName: app-tls
+  rules:
+    - host: app-b.example.com
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: app-b
+                port:
+                  number: 5000
